@@ -46,7 +46,8 @@ class CursoController extends Controller
     {
         $datoscurso = request()->except('_token'); //va a recibir la informacion excepto el token
         Curso::insert($datoscurso);
-        return response()->json($datoscurso);
+        //return response()->json($datoscurso);
+        return redirect('cursos');
     }
 
     /**
