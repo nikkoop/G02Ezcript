@@ -4,7 +4,7 @@
 
 <br>
 <div style="display: flex; justify-content: space-between">
-    <h1>Cursos creados</h1>
+    <h1 class="text-light">Cursos creados</h1>
     <a href="{{url('cursos/create')}}" class="btn btn-success" style="align-self: center; width: 200px"> Crear Un Nuevo Curso </a>
 </div>
 <br>

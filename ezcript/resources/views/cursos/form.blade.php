@@ -1,5 +1,5 @@
 <br>
-<h1>{{ $modo }} Curso</h1>
+<h1  class="text-light">{{ $modo }} Curso</h1>
 <br><br>
 
 <body>
@@ -40,7 +40,7 @@
     <input type="text" class="form-control" name="cur_profesor" value="{{isset($curso->cur_profesor)?$curso->cur_profesor:''}}" id="Profesor">
     <br>
     <label for="Descripcion">Descripción del Curso</label>
-    <input type="text" class="form-control" name="cur_descripcion" value="{{isset($curso->cur_descripcion)?$curso->cur_descripcion:''}}" id="Descripcion">
+    <textarea class="form-control" name="cur_descripcion"  id="Descripcion">{{isset($curso->cur_descripcion)?$curso->cur_descripcion:''}}</textarea>
     <br>
     <input class="btn btn-success" type="submit" value=" {{ $modo }} Curso">
     <a href="{{url('cursos/')}}" class="btn btn-success" style="align-self: center; width: 200px"> Regresar </a>

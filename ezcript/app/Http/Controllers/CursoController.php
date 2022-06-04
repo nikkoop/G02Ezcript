@@ -17,7 +17,7 @@ class CursoController extends Controller
      */
     public function index()
     {
-        $datos['cursos']=Curso::paginate(5); //se guarda en la variable cursos
+        $datos['cursos']=Curso::paginate(6); //se guarda en la variable cursos
         $periodos= Periodo::all();
         $asignaturas= Asignatura::all();
         return view('cursos.index',$datos,compact('periodos','asignaturas'));
