@@ -27,31 +27,32 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap5.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.bootstrap5.min.css">
-    
+
 
 
 </head>
 
-<header style="background-color: #37474F">
-    <nav class="navbar navbar-light">
-        <div class="container-fluid">
-            <a class="navbar-brand text-white " href="#">Ezcript();</a>
-        </div>
-    </nav>
-</header>
+
 
 <body style="background-color: #607D8B">
 
 
+    <header style="background-color: #37474F">
+        <nav class="navbar navbar-light">
+            <div class="container-fluid">
+                <a class="navbar-brand text-white " href="#">Ezcript();</a>
+            </div>
+        </nav>
+    </header>
+
     <div class="container">
+
         @yield('content')
+
+
+
     </div>
-
-
-</body>
-
-
-<div class="fixed-bottom">
+    
     <footer class="text-center text-white " style="background-color: #37474F">
         <!-- Grid container -->
         <div class="container p-4 pb-0">
@@ -84,6 +85,10 @@
         </div>
         <!-- Copyright -->
     </footer>
-</div>
+
+</body>
+
+
+
 
 </html>

@@ -1,9 +1,14 @@
-<br>
-<h1  class="text-light">{{ $modo }} Curso</h1>
-<br><br>
+<div class="py-5">
 
-<body>
-    <label for="Asignatura">Asignatura</label>
+    
+    <h1 class="text-light">{{ $modo }} Curso</h1>
+    <br>
+
+    
+    <p class="text-danger"><strong>* Obligatorio</strong></p>
+
+    <label class="text-light" for="Asignatura"><strong>Asignatura</strong></label>
+    <lavel for="Asignatura" class="text-danger"> *</lavel>
     <select class="form-select" name="asg_id" id="Asignatura">
         <option selected disabled value="">--Seleccione la Asignatura--</option>
         @foreach($asignaturas as $asignatura)
@@ -11,7 +16,8 @@
         @endforeach
     </select>
     <br>
-    <label for="Carrera">Carrera</label>
+    <label class="text-light" for="Carrera"><strong>Carrera</strong></label>
+    <lavel for="Carrera" class="text-danger"> *</lavel>
     <select class="form-select" name="car_id" id="Carrera">
         <option selected disabled value="">--Seleccione la Carrera--</option>
         @foreach($carreras as $carrera)
@@ -19,7 +25,8 @@
         @endforeach
     </select>
     <br>
-    <label for="Periodo">Periodo</label>
+    <label class="text-light" for="Periodo"><strong>Periodo</strong></label>
+    <lavel for="Periodo" class="text-danger"> *</lavel>
     <select class="form-select" name="per_id" id="Periodo">
         <option selected disabled value="">--Seleccione el Año--</option>
         @foreach($periodos as $periodo)
@@ -33,16 +40,17 @@
         @endforeach
     </select>
     <br>
-    <label for="Nombre">Nombre del Curso</label>
+    <label class="text-light" for="Nombre"><strong>Nombre del Curso</strong></label>
+    <lavel for="Nombre" class="text-danger"> *</lavel>
     <input type="text" class="form-control" name="cur_nombre" value="{{isset($curso->cur_nombre)?$curso->cur_nombre:''}}" id="Nombre">
     <br>
-    <label for="Profesor">Nombre del Profesor</label>
+    <label class="text-light" for="Profesor"><strong>Nombre del Profesor</strong></label>
     <input type="text" class="form-control" name="cur_profesor" value="{{isset($curso->cur_profesor)?$curso->cur_profesor:''}}" id="Profesor">
     <br>
-    <label for="Descripcion">Descripción del Curso</label>
-    <textarea class="form-control" name="cur_descripcion"  id="Descripcion">{{isset($curso->cur_descripcion)?$curso->cur_descripcion:''}}</textarea>
+    <label class="text-light" for="Descripcion"><strong>Descripción del Curso</strong></label>
+    <textarea class="form-control" name="cur_descripcion" id="Descripcion">{{isset($curso->cur_descripcion)?$curso->cur_descripcion:''}}</textarea>
     <br>
     <input class="btn btn-success" type="submit" value=" {{ $modo }} Curso">
     <a href="{{url('cursos/')}}" class="btn btn-success" style="align-self: center; width: 200px"> Regresar </a>
-    <br>
-</body>
+
+</div>
