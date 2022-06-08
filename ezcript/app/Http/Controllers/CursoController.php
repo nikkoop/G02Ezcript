@@ -8,6 +8,7 @@ use App\Models\Carrera;
 use App\Models\Periodo;
 use Illuminate\Http\Request;
 
+
 class CursoController extends Controller
 {
     /**
@@ -45,10 +46,33 @@ class CursoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    {   
+
+        $restricciones=[
+            'asg_id'=> 'required',
+            'car_id'=> 'required',
+            'per_id'=> 'required',
+            'cur_nombre' => 'required|string|max:40|regex:/^[\pL\s\-]+$/u',  // regex ocupa una expresión regular para validar que varacteres son aceptados
+            'cur_profesor'=> 'required|string|max:40|regex:/^[\pL\s\-]+$/u',
+            'cur_descripcion'=> 'nullable|string|max:256' //Maximo de caracteres
+        ];
+
+        $mensaje=[
+            'cur_nombre.required'=>'El curso debe tener un nombre',
+            'cur_nombre.regex'=>'El nombre del curso no puede tener números',
+            'cur_profesor.required'=>'Se debe especificar el nombre del profesor',
+            'cur_profesor.regex'=>'El nombre del profesor no puede tener números',
+            'cur_descripcion.max'=>'La descripción es demasiado larga',
+            
+        ];
+
+        
+        $this->validate($request,$restricciones,$mensaje); //Se validan los datos
+
         $datoscurso = request()->except('_token'); //va a recibir la informacion excepto el token
         Curso::insert($datoscurso);
         //return response()->json($datoscurso);
+
         return redirect('cursos');
     }
 

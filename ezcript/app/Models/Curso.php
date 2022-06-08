@@ -13,4 +13,6 @@ class Curso extends Model
     public $incrementing = true;
 
     use HasFactory;
+
+    public $fillable = ['cur_nombre','cur_profesor','cur_descripcion']; //Los campos que pueden ser llenados
 }
