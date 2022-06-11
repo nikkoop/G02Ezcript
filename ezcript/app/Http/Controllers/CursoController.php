@@ -7,6 +7,7 @@ use App\Models\Asignatura;
 use App\Models\Carrera;
 use App\Models\Periodo;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 
 class CursoController extends Controller
@@ -73,6 +74,8 @@ class CursoController extends Controller
         Curso::insert($datoscurso);
         //return response()->json($datoscurso);
 
+        Alert::success('Nuevo Curso Creado', 'El curso se ha creado exitosamente'); // Mensaje de Creación de curso
+
         return redirect('cursos');
     }
 
@@ -121,7 +124,11 @@ class CursoController extends Controller
         $asignaturas = Asignatura::all();
         $carreras = Carrera::all();
         $periodos = Periodo::all();
-        return view('cursos.edit', compact('curso','asignaturas','carreras','periodos'));
+        //return view('cursos.edit', compact('curso','asignaturas','carreras','periodos'));
+
+        Alert::success('Curso editado', 'Los datos del curso se han editado exitosamente'); // Mensaje de Creación de curso
+
+        return redirect('cursos');
     }
 
     /**

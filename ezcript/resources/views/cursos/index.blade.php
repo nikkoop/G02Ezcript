@@ -58,11 +58,12 @@
                         </div>
 
                         <div class="col">
-                            <form action="{{url('/cursos/'.$curso->id)}}" method="post">
+                            <form action="{{url('/cursos/'.$curso->id)}}" class="form-eliminar" method="post">
                                 @csrf
                                 {{method_field('DELETE')}}
 
-                                <input type="submit" class="btn btn-danger" onclick="return confirm('¿Estás seguro/a que deseas eliminar este curso?')" value="Eliminar curso">
+
+                                <button type="submit" class="btn btn-danger">Eliminar curso</button>
 
                             </form>
                         </div>
@@ -82,4 +83,58 @@
     @endforeach
 
 </div>
+@endsection
+
+@section('js')
+
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    $('.form-eliminar').submit(function(e) {
+        e.preventDefault(); //Se detiene el envio del formulario
+
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: 'btn btn-success',
+                cancelButton: 'btn btn-danger'
+            },
+            buttonsStyling: false
+        })
+
+        swalWithBootstrapButtons.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, delete it!',
+            cancelButtonText: 'No, cancel!',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+                /*
+                swalWithBootstrapButtons.fire(
+                    'Deleted!',
+                    'Your file has been deleted.',
+                    'success'
+                )
+                */
+               this.submit();
+            } else if (
+
+                result.dismiss === Swal.DismissReason.cancel
+            ) {
+                swalWithBootstrapButtons.fire(
+                    'Cancelled',
+                    'Your imaginary file is safe :)',
+                    'error'
+                )
+            }
+        })
+    });
+
+
+
+    /*
+    
+    */
+</script>
 @endsection
