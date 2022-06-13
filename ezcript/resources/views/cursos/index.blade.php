@@ -6,13 +6,13 @@
 
     <div style="display: flex; justify-content: space-between">
         <h1 class="text-light">Cursos creados</h1>
-        <a href="{{url('cursos/create')}}" class="btn btn-success" style="align-self: center; width: 200px"> Crear Un Nuevo Curso </a>
+        <a href="{{url('cursos/create')}}" class="btn btn-success" style="align-self: center; width: 200px ;"><i class="bi bi-plus-circle"></i> Crear Un Nuevo Curso </a>
     </div>
     <br>
     @foreach($cursos as $curso )
     <div class="card shadow-lg">
 
-        <h5 class="card-header">{{$curso->cur_nombre}}</h5>
+        <h5 class="card-header"><i class="bi bi-terminal-fill"></i> {{$curso->cur_nombre}}</h5>
 
         <div class="card-body">
 
