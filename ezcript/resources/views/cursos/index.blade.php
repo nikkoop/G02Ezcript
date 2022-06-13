@@ -88,53 +88,37 @@
 @section('js')
 
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+@if(session('eliminar') == 'curso-eliminado')
+<script>
+    Swal.fire(
+        '¡Eliminación Exitosa!',
+        'El curso ha sido eliminado con exito.',
+        'success'
+    )
+</script>
+@endif
+
 <script>
     $('.form-eliminar').submit(function(e) {
         e.preventDefault(); //Se detiene el envio del formulario
 
-        const swalWithBootstrapButtons = Swal.mixin({
-            customClass: {
-                confirmButton: 'btn btn-success',
-                cancelButton: 'btn btn-danger'
-            },
-            buttonsStyling: false
-        })
-
-        swalWithBootstrapButtons.fire({
-            title: 'Are you sure?',
-            text: "You won't be able to revert this!",
+        Swal.fire({
+            title: 'Estás Seguro/a de Eliminar Este Curso?',
+            text: "Una vez eliminado no se podrá recuperar",
             icon: 'warning',
             showCancelButton: true,
-            confirmButtonText: 'Yes, delete it!',
-            cancelButtonText: 'No, cancel!',
-            reverseButtons: true
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: '¡Si, eliminar!',
+            cancelButtonText: 'Cancelar'
         }).then((result) => {
             if (result.isConfirmed) {
-                /*
-                swalWithBootstrapButtons.fire(
-                    'Deleted!',
-                    'Your file has been deleted.',
-                    'success'
-                )
-                */
+               
                this.submit();
-            } else if (
-
-                result.dismiss === Swal.DismissReason.cancel
-            ) {
-                swalWithBootstrapButtons.fire(
-                    'Cancelled',
-                    'Your imaginary file is safe :)',
-                    'error'
-                )
             }
         })
     });
 
-
-
-    /*
-    
-    */
 </script>
 @endsection

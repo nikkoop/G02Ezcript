@@ -126,7 +126,7 @@ class CursoController extends Controller
         $periodos = Periodo::all();
         //return view('cursos.edit', compact('curso','asignaturas','carreras','periodos'));
 
-        Alert::success('Curso editado', 'Los datos del curso se han editado exitosamente'); // Mensaje de Creación de curso
+        Alert::success('Curso Editado', 'Los datos del curso se han editado exitosamente'); // Mensaje de Creación de curso
 
         return redirect('cursos');
     }
@@ -141,6 +141,6 @@ class CursoController extends Controller
     {
         //Para eliminar un curso
         Curso::destroy($id);
-        return redirect('cursos');
+        return redirect('cursos')->with('eliminar','curso-eliminado'); //'eliminar' variable donde va a almacenar el mensaje y el mensaje 'curso eliminado'
     }
 }
