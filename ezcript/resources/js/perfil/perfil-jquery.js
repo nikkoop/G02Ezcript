@@ -129,11 +129,14 @@ $(document).ready(function() {
     });
 
     // EDITAR CAMPO
-    $("[id='editar-campo']").click(function() {
+    $("[id='editar-campo']").not("[input=pef_contrasena]").click(function() {
 
         console.log("editando campo");
-        // Ocultar el boton de editar perfil
+        // Ocultar el boton de editar campo
         $(this).addClass("d-none");
+
+        // Ocultar el botón de editar campo
+        $("[input=pef_contrasena]").addClass("d-none");
 
         // Ocultar el botón de eliminar perfil
         var btnEliminarPerfil = $("#eliminar-perfil");
