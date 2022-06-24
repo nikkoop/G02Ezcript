@@ -53,17 +53,21 @@ class CursoController extends Controller
             'asg_id'=> 'required',
             'car_id'=> 'required',
             'per_id'=> 'required',
-            'cur_nombre' => 'required|string|max:40|regex:/^[\pL\s\-]+$/u',  // regex ocupa una expresión regular para validar que varacteres son aceptados
+            'cur_nombre' => 'required|string|min:7|max:40|regex:/^[\pL\s\-]+$/u',  // regex ocupa una expresión regular para validar que varacteres son aceptados
             'cur_profesor'=> 'required|string|max:40|regex:/^[\pL\s\-]+$/u',
-            'cur_descripcion'=> 'nullable|string|max:256' //Maximo de caracteres
+            'cur_descripcion'=> 'nullable|string|min:20|max:256' //Maximo de caracteres
         ];
 
         $mensaje=[
-            'cur_nombre.required'=>'El curso debe tener un nombre',
-            'cur_nombre.regex'=>'El nombre del curso no puede tener números',
-            'cur_profesor.required'=>'Se debe especificar el nombre del profesor',
-            'cur_profesor.regex'=>'El nombre del profesor no puede tener números',
-            'cur_descripcion.max'=>'La descripción es demasiado larga',
+            'cur_nombre.required'=>'El curso debe tener un nombre.',
+            'cur_nombre.max'=>'El nombre del curso no puede ser mayor a 40 caracteres.',
+            'cur_nombre.min'=>'El nombre del curso no puede ser menor a 7 caracteres.',
+            'cur_nombre.regex'=>'El nombre del curso no puede tener números.',
+            'cur_profesor.required'=>'Se debe especificar el nombre del profesor.',
+            'cur_profesor.max'=>'El nombre del profesor no puede ser mayor a 40 caracteres.',
+            'cur_profesor.regex'=>'El nombre del profesor no puede tener números.',
+            'cur_descripcion.min'=>'La descripción debe tener por lo menos 20 caracteres.',
+            'cur_descripcion.max'=>'La descripción no puede tener más de 256 caracteres.',
             
         ];
 
@@ -122,17 +126,21 @@ class CursoController extends Controller
             'asg_id'=> 'required',
             'car_id'=> 'required',
             'per_id'=> 'required',
-            'cur_nombre' => 'required|string|max:40|regex:/^[\pL\s\-]+$/u',  // regex ocupa una expresión regular para validar que varacteres son aceptados
+            'cur_nombre' => 'required|string|min:7|max:40|regex:/^[\pL\s\-]+$/u',  // regex ocupa una expresión regular para validar que varacteres son aceptados
             'cur_profesor'=> 'required|string|max:40|regex:/^[\pL\s\-]+$/u',
-            'cur_descripcion'=> 'nullable|string|max:256' //Maximo de caracteres
+            'cur_descripcion'=> 'nullable|string|min:20|max:256' //Maximo de caracteres
         ];
 
         $mensaje=[
-            'cur_nombre.required'=>'El curso debe tener un nombre',
-            'cur_nombre.regex'=>'El nombre del curso no puede tener números',
-            'cur_profesor.required'=>'Se debe especificar el nombre del profesor',
-            'cur_profesor.regex'=>'El nombre del profesor no puede tener números',
-            'cur_descripcion.max'=>'La descripción es demasiado larga',
+            'cur_nombre.required'=>'El curso debe tener un nombre.',
+            'cur_nombre.max'=>'El nombre del curso no puede ser mayor a 40 caracteres.',
+            'cur_nombre.min'=>'El nombre del curso no puede ser menor a 7 caracteres.',
+            'cur_nombre.regex'=>'El nombre del curso no puede tener números.',
+            'cur_profesor.required'=>'Se debe especificar el nombre del profesor.',
+            'cur_profesor.max'=>'El nombre del profesor no puede ser mayor a 40 caracteres.',
+            'cur_profesor.regex'=>'El nombre del profesor no puede tener números.',
+            'cur_descripcion.min'=>'La descripción debe tener por lo menos 20 caracteres.',
+            'cur_descripcion.max'=>'La descripción no puede tener más de 256 caracteres.',
             
         ];
 
