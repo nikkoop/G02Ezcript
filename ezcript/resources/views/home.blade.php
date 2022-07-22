@@ -3,20 +3,15 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
+        <span class="p-5">
+            <h1 class="text-light text-center">Ezcript();</h1>
+        </span>
 
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    {{ __('You are logged in!') }}
-                </div>
-            </div>
+        <div class="vstack gap-2 col-md-5 mx-auto">
+            <a href="{{url('cursos/')}}" class="btn btn-info btn-lg text-light fs-4 fw-bold" style="align-self: center; width: 400px"> Jugar </a>
+            <a href="#" class="btn btn-info btn-lg text-light fs-4 disabled" style="align-self: center; width: 400px"> Tus puntuaciones </a>
+            <a href="#" class="btn btn-info btn-lg text-light fs-4 disabled" style="align-self: center; width: 400px">Acerca del Juego </a>
+            <a href="#" class="btn btn-info btn-lg text-light fs-4 disabled" style="align-self: center; width: 400px">Créditos </a>
         </div>
     </div>
 </div>
