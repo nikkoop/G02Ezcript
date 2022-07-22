@@ -3,7 +3,7 @@
 @section('content')
 
 
-<form action="{{ url('/cursos') }}" method="post" enctype="multipart/form-data">
+<form action="{{ url('/cursos') }}" method="post">
     @csrf
 
     @include('cursos.form',['modo'=>'Crear'])
