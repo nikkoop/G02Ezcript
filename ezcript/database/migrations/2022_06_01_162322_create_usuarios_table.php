@@ -24,8 +24,6 @@ return new class extends Migration
             $table->string('pef_apellido_materno');
             $table->string('pef_correo');
             $table->string('pef_telefono');
-            $table->string('pef_pagina_web');
-            $table->string('pef_descripcion');
             $table->string('pef_contrasena');
 
             $table->foreignId('rol_id')->references('rol_id')->on('rol');

@@ -1,5 +1,8 @@
 // Código Javascript
 
+// const { result } = require("lodash");
+// const { default: Swal } = require("sweetalert2");
+
 function cambiarURL(input) {
     // Verificar si este input tiene alguna imagen
     if (input.files && input.files[0]) {
@@ -17,8 +20,8 @@ function cambiarURL(input) {
 function eliminarUsuario(evt) {
 
     $("input[name='operacion']").val("destroy");
-
-    return true;
+    console.log("usuario eliminado!");
+    $("#form").submit();
 }
 
 // swal({
@@ -37,69 +40,47 @@ function eliminarUsuario(evt) {
 
 // });
 
-function desplegarAlertaEliminarUsuario(evt) {
-
-}
-
 
 // Código JQuery
 $(document).ready(function() {
 
-    // MOSTRAR/OCULTAR EL BOTÓN PARA GUARDAR LOS NUEVOS DATOS DEL PERFIL EN LA BASE DE DATOS 
-    // $("#editar-perfil").click(function() {
+    // Desplegar alerta para eliminar la cuenta de usuario
+    $("#eliminar-perfil").on("click", function(event) {
 
-    //     // Ocultar el boton de editar perfil
-    //     $("#editar-perfil").addClass("d-none");
+        console.log("eliminando");
+        // Cancelar evento por defecto
+        event.preventDefault();
 
-    //     // Ocultar el botón de eliminar perfil
-    //     $("#eliminar-perfil").addClass("d-none");
-
-    //     // Mostrar el botón para cancelar la operación
-    //     $("#cancelar-editar-perfil").removeClass("d-none");
-
-    //     // Mostrar el botón de guardar cambios
-    //     $("#guardar-datos").removeClass("d-none");
-
-    //     // Mostrar el botón para cambiar la foto
-    //     $("#cambiar-foto").removeClass("d-none");
-
-    //     // Mostrar el botón para alternar (mostrar/ocultar) la contraseña
-    //     $("#alternar-contrasena").removeClass("d-none");
-
-    //     // Cambiar el contenido de los campos teléfono, página web y 
-    //     // descripción dependiendo se si tienen el valor "No tiene"
-    //     if ($("input[name='pef_telefono']").val() == "No tiene") {
-    //         $("input[name='pef_telefono']").val("");
-    //     }
-    //     if ($("input[name='pef_pagina_web']").val() == "No tiene") {
-    //         $("input[name='pef_pagina_web']").val("");
-    //     }
-    //     if ($("input[name='pef_descripcion']").val() == "No tiene") {
-    //         $("input[name='pef_descripcion']").val("");
-    //     }
-
-    //     // Volver editable todos los inputs del formulario 
-    //     // para cambiar los datos del usuario
-    //     $("input").addClass("form-control");
-    //     $("input").not("input[name='rol_id']").removeClass("border-0");
-    //     $("input").not("input[name='rol_id']").removeAttr("readonly");
-    // });
-
-    // // // MOSTRAR BOTÓN PARA EDITAR CAMPO
-    // // $(".col-12").on("mouveover", function(event) {
-    // //     $(event.target).children("button").eq(0).removeClass("d-none");
-    // //     //$(event.relatedTarget).children("button").eq(0).addClass("d-none");
-    // // });
-    // // // OCULTAR BOTÓN PARA EDITAR CAMPO
-    // // $(".col-12").on("mouseleave", function(event) {
-    // //     $(event.target).children("button").eq(0).addClass("d-none");
-    // //     //$(event.relatedTarget).children("button").eq(0).removeClass("d-none");
-    // // });
+        // Desplegar la alerta
+        Swal.fire({
+            position: "center",
+            title: "¿Estás seguro que quieres eliminar tu cuenta de usuario?",
+            text: "No podrás revertir esta operación",
+            icon: "warning",
+            confirmButtonColor: "#3085d6",
+            confirmButtonText: "¡Si, eliminar!",
+            showCancelButton: "true",
+            cancelButtonColor: "#d33",
+            cancelButtonText: "Cancelar"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Eliminar el usuario
+                eliminarUsuario();
+            } else {
+                // Cancelar operación y recargar la página
+                const idUsuario = $("input[name='pef_id']").val();
+                var url = window.location.href;
+                window.location.replace(url);
+            }
+        });
+    });
 
     // CANCELAR LA OPERACIÓN DE EDITAR DATOS DEL PERFIL
     $("#cancelar-editar-perfil").click(function() {
+        $("input[name='operacion']").val("cancel");
         const idUsuario = $("input[name='pef_id']").val();
-        window.location.replace("/ezcript/public/perfil/" + idUsuario);
+        var url = window.location.href;
+        window.location.replace(url);
     });
 
     // BOTÓN PARA CAMBIAR LA FOTO DE PERFIL
@@ -128,7 +109,7 @@ $(document).ready(function() {
 
     });
 
-    // EDITAR CAMPO
+    // EDITAR CAMPO DEL PERFIL
     $("[id='editar-campo']").not("[input=pef_contrasena]").click(function() {
 
         console.log("editando campo");
@@ -142,6 +123,7 @@ $(document).ready(function() {
         var btnEliminarPerfil = $("#eliminar-perfil");
         if (!btnEliminarPerfil.hasClass("d-none")) {
             btnEliminarPerfil.addClass("d-none");
+            btnEliminarPerfil.attr("disabled");
         }
 
         // Mostrar el botón para cancelar la operación
@@ -169,7 +151,8 @@ $(document).ready(function() {
         // Volver editable el input
         input.addClass("form-control");
         input.removeClass("border-0");
-        input.removeAttr("readonly");
+        input.removeAttr("readonly", true);
 
     });
+
 });

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CursoController;
+use App\Http\Controllers\UsuarioController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,3 +21,20 @@ Route::get('/', function () {
 
 
 Route::resource('cursos',CursoController::class); //para acceder a todas las rutas de cursoss
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::resource('cursos',CursoController::class); //para acceder a todas las rutas de cursos
+
+// Rutas del controlador de Perfiles "UsuarioController"
+
+Route::get('/perfil/show/{pef_id}', [UsuarioController::class, "show"]);
+
+Route::get('/perfil/{pef_id}', [UsuarioController::class, "index"]);
+
+Route::patch('/perfil/{pef_id}', [UsuarioController::class, "update"]);
+
+Route::delete('/perfil/{perf_id}', [UsuarioController::class, "destroy"]);
+
+//Route::resource('perfil', UsuarioController::class);

@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Validator;
-use Crypt;
+use Illuminate\Support\Facades\Hash;
 use Redirect;
 
 class UsuarioController extends Controller
@@ -140,6 +140,9 @@ class UsuarioController extends Controller
             Alert::success("Perfil Eliminado", "El perfil ha sido eliminado exitosamente");
             return view("/welcome");
         }
+        else if($operacion == "cancel"){
+            return view("/perfil". "/". $pef_id);
+        }
 
         // Extraer los datos del usuario
         $datosUsuario = $request->except(['_token', '_method', 'operacion']);
@@ -147,22 +150,21 @@ class UsuarioController extends Controller
         // Validar los datos del usuario
         $reglas = array(
             "pef_rut" => array("required", "regex:/^\d{1,2}\.\d{3}\.\d{3}[-][0-9K]{1}$/"),
-            "pef_correo" => array("required", "regex:/(.+)@(.+)\.(.+)/i")
+            "pef_correo" => array("required", "regex:/(.+)@(.+)\.(.+)/i"),
+            "pef_telefono" => array("nullable", "regex:/^(\+?56)?(\s?)(0?9)(\s?)[98765432]\d{7}$/")
         );
         $mensajes = array(
             "required" => "Este campo es obligatorio",
-            "regex" => "El rut proporcionado no posee un formato válido",
-            "email" => "Este correo proporcionado no posee un fromato válido",
+            "pef_rut.regex" => "El RUT proporcionado no posee un formato válido",
+            "pef_correo.regex" => "El correo proporcionado no posee un fromato válido",
+            "pef_telefono.regex" => "El teléfono proporcionado no posee un formato válido",
             "min" => "Este valor debe tener al menos 8 carácters",
             "max" => "Este valor no debe tener más de 255 caracteres"
         );
         $datosUsuarioParaValidar = array(
             "pef_rut" => $datosUsuario['pef_rut'], 
             "pef_correo" => $datosUsuario['pef_correo'],
-            "pef_pagina_web" => $datosUsuario['pef_pagina_web'], 
-            "pef_telefono" => $datosUsuario['pef_telefono'], 
-            "pef_contrasena" => $datosUsuario['pef_contrasena'],
-            "pef_descripcion" => $datosUsuario['pef_descripcion'], 
+            "pef_telefono" => $datosUsuario['pef_telefono']
         );
 
         $validar = Validator::make($datosUsuarioParaValidar, $reglas, $mensajes);
@@ -189,15 +191,9 @@ class UsuarioController extends Controller
         $datosUsuario['rol_id'] = Rol::where("rol_nombre", "=", $datosUsuario['rol_id'])->first()->rol_id;
 
         // Encriptar contraseña
-        // $datosUsuario['pef_contrasena'] = Crypt::encrypt($datosUsuario['pef_contrasena']);
+        //$datosUsuario['pef_contrasena'] = Crypt::encrypt($datosUsuario['pef_contrasena']);
 
         // Corrigiendo los campos NO OBLIGATORIOS que esten vacios
-        if(empty($datosUsuario['pef_descripcion'])){
-            $datosUsuario['pef_descripcion'] = 'No tiene';
-        }
-        if(empty($datosUsuario['pef_pagina_web'])){
-            $datosUsuario['pef_pagina_web'] = 'No tiene';
-        }
         if(empty($datosUsuario['pef_telefono'])){
             $datosUsuario['pef_telefono'] = 'No tiene';
         }
