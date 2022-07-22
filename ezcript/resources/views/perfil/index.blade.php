@@ -1,44 +1,9 @@
+@extends('layouts.plantilla')
+
+@section('content')
 
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Perfil de Usuario</title>
 
-    <!-- IMPORTANDO SCRIPT DE SWEET ALERT 2 -->
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    
-    <!-- IMPORTANDO SCRIPT DE JQUERY -->
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-
-    <!-- IMPORTANDO SCRIPTS DE DATATABLE -->
-    <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap4.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css"></link>
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap4.min.css"></script>
-    
-    <!-- IMPORTAND BOOTSTRAP 5 -->
-    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script> -->
-
-    <!-- IMPORTANDO JQUERY -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="/ezcript/resources/js/perfil/perfil-jquery.js"></script>
-
-    <!-- IMPORTANDO SCRIPT PARA ENVIAR PETICIONES DELETE DESDE JAVASCRIPT -->
-    <script src="/ezcript/resources/js/perfil/laravel.js"></script>
-
-    <!-- IMORTANDO ICONOS DE FONT-AWESOME -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-    <!-- IMPORTANDO SWEET ALERT 2 -->
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-</head>
-
-<body>
 <form action="{{ url('/perfil/'.$datosUsuario->pef_id) }}" method="post" enctype="multipart/form-data">
     @csrf
     @method('PATCH')
@@ -363,6 +328,7 @@
 
     <!-- <div class="container"></div> -->
     </form>
+    <script src="/ezcript/resources/js/perfil/perfil-jquery.js"></script>
     @include('sweetalert::alert')
-</body>
-</html>
+
+@endsection
