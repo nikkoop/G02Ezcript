@@ -21,6 +21,7 @@ Route::get('/', function () {
 
 Route::resource('cursos',CursoController::class); //para acceder a todas las rutas de cursoss
 
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

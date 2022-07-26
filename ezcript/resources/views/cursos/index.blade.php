@@ -50,7 +50,7 @@
 
                             <div class="row row-cols-auto">
                                 <div class="col">
-                                    <a href="#" class="btn btn-primary">Entrar al Curso</a>
+                                    <a href="{{url('/cursos/'.$curso->id)}}" class="btn btn-primary">Entrar al Curso</a>
                                 </div>
 
                                 <div class="col">

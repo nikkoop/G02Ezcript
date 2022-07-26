@@ -89,9 +89,13 @@ class CursoController extends Controller
      * @param  \App\Models\Curso  $curso
      * @return \Illuminate\Http\Response
      */
-    public function show(Curso $curso)
+    public function show($id)
     {
-        //
+        //A traves del id se pasa la información a $curso
+        //y se retorna la vista con la información del curso
+        $curso=Curso::findOrFail($id);
+        
+        return view('cursos.vercurso',compact('curso'));
     }
 
     /**
@@ -102,7 +106,7 @@ class CursoController extends Controller
      */
     public function edit($id)
     {
-        //A travez del id se pasa la información a $curso y se retorna la vista con la información
+        //A traves del id se pasa la información a $curso y se retorna la vista con la información
         $curso=Curso::findOrFail($id);
 
         $asignaturas = Asignatura::all();

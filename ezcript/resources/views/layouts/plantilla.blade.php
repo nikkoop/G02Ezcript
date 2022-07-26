@@ -34,7 +34,7 @@
 
 
 
-<body style="background-color: #607D8B">
+<body class="d-flex flex-column min-vh-100" style="background-color: #607D8B">
 
 
     <header style="background-color: #37474F">
@@ -106,7 +106,7 @@
 
     </div>
 
-    <footer class="text-center text-white " style="background-color: #37474F">
+    <footer class="text-center text-white mt-auto" style="background-color: #37474F">
         <!-- Grid container -->
         <div class="container p-4 pb-0">
             <!-- Section: Social media -->
