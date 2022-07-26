@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\CursoController;
 use App\Http\Controllers\UsuarioController;
 
@@ -19,8 +20,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
-Route::resource('cursos',CursoController::class); //para acceder a todas las rutas de cursoss
 
 Auth::routes();
 
