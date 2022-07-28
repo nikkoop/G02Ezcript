@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('periodo', function (Blueprint $table) {
-            $table->integer('id')->primary();
+            $table->id();
             $table->string('per_anio');
             $table->string('per_semestre');
             $table->timestamps();
