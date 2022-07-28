@@ -563,7 +563,18 @@ trait ValidatesAttributes
     {
         $this->requireParameterCount(1, $parameters, 'digits');
 
-        return ! preg_match('/[^0-9]/', $value)
+        $length = strlen((string) $value);
+
+        if (((string) $value) === '.') {
+            return false;
+        }
+
+        // Make sure there is not more than one dot...
+        if (($length - strlen(str_replace('.', '', (string) $value))) > 1) {
+            return false;
+        }
+
+        return ! preg_match('/[^0-9.]/', $value)
                     && strlen((string) $value) == $parameters[0];
     }
 
@@ -581,7 +592,16 @@ trait ValidatesAttributes
 
         $length = strlen((string) $value);
 
-        return ! preg_match('/[^0-9]/', $value)
+        if (((string) $value) === '.') {
+            return false;
+        }
+
+        // Make sure there is not more than one dot...
+        if (($length - strlen(str_replace('.', '', (string) $value))) > 1) {
+            return false;
+        }
+
+        return ! preg_match('/[^0-9.]/', $value)
                     && $length >= $parameters[0] && $length <= $parameters[1];
     }
 
@@ -1948,19 +1968,6 @@ trait ValidatesAttributes
     public function validateStartsWith($attribute, $value, $parameters)
     {
         return Str::startsWith($value, $parameters);
-    }
-
-    /**
-     * Validate the attribute does not start with a given substring.
-     *
-     * @param  string  $attribute
-     * @param  mixed  $value
-     * @param  array<int, int|string>  $parameters
-     * @return bool
-     */
-    public function validateDoesntStartWith($attribute, $value, $parameters)
-    {
-        return ! Str::startsWith($value, $parameters);
     }
 
     /**

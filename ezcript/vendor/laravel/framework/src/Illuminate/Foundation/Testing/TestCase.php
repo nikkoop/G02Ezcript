@@ -144,12 +144,10 @@ abstract class TestCase extends BaseTestCase
         }
 
         foreach ($uses as $trait) {
-            if (method_exists($this, $method = 'setUp'.class_basename($trait))) {
-                $this->{$method}();
-            }
+            $method = 'setUp'.class_basename($trait);
 
-            if (method_exists($this, $method = 'tearDown'.class_basename($trait))) {
-                $this->beforeApplicationDestroyed(fn () => $this->{$method}());
+            if (method_exists($this, $method)) {
+                $this->{$method}();
             }
         }
 

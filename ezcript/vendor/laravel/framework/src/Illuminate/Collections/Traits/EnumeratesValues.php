@@ -15,7 +15,6 @@ use JsonSerializable;
 use Symfony\Component\VarDumper\VarDumper;
 use Traversable;
 use UnexpectedValueException;
-use UnitEnum;
 
 /**
  * @template TKey of array-key
@@ -797,7 +796,7 @@ trait EnumeratesValues
 
             if (! is_array($result)) {
                 throw new UnexpectedValueException(sprintf(
-                    "%s::reduceSpread expects reducer to return an array, but got a '%s' instead.",
+                    "%s::reduceMany expects reducer to return an array, but got a '%s' instead.",
                     class_basename(static::class), gettype($result)
                 ));
             }
@@ -1006,8 +1005,6 @@ trait EnumeratesValues
             return (array) $items->jsonSerialize();
         } elseif ($items instanceof Traversable) {
             return iterator_to_array($items);
-        } elseif ($items instanceof UnitEnum) {
-            return [$items];
         }
 
         return (array) $items;

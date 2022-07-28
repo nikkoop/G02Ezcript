@@ -15,9 +15,9 @@ return new class extends Migration
     {
         Schema::create('curso', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('asg_id');
-            $table->unsignedBigInteger('car_id');
-            $table->unsignedBigInteger('per_id');
+            $table->unsignedInteger('asg_id');
+            $table->unsignedInteger('car_id');
+            $table->unsignedInteger('per_id');
             $table->string('cur_nombre');
             $table->string('cur_profesor');
             $table->string('cur_descripcion')->nullable();
