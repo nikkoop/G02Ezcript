@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('asignatura', function (Blueprint $table) {
-            $table->integer('id')->primary();
+            $table->id();
             $table->string('asg_nombre');
             $table->timestamps();
         });
