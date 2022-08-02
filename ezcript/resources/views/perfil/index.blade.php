@@ -12,9 +12,7 @@
             <div class="col-12">
                 <h1>
                     {{ 
-                        $datosUsuario->pef_nombre. " ". 
-                        $datosUsuario->pef_apellido_paterno. " ". 
-                        $datosUsuario->pef_apellido_materno 
+                        $datosUsuario->pef_nombre
                     }}
                 </h1>
             </div>

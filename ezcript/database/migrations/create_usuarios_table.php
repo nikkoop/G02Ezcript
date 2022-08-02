@@ -15,16 +15,14 @@ return new class extends Migration
     {
         Schema::create('usuario', function (Blueprint $table) {
 
-            $table->id('pef_id');
+            $table->foreignId('pef_id')->references('id')->on('users');;
 
-            $table->string('pef_foto');
+            $table->string('pef_foto')->default('uploads/foto-perfil-por-defecto.png');
             $table->string('pef_rut');
             $table->string('pef_nombre');
-            $table->string('pef_apellido_paterno');
-            $table->string('pef_apellido_materno');
             $table->string('pef_correo');
-            $table->string('pef_telefono');
-            $table->string('pef_contrasena');
+            $table->string('pef_telefono')->nullable();
+            //$table->string('pef_contrasena');
 
             $table->foreignId('rol_id')->references('rol_id')->on('rol');
 

@@ -11,4 +11,13 @@ class Usuario extends Model
     public $primaryKey = 'pef_id';
     public $incrementing = true;
     use HasFactory;
+
+    protected $fillable = [
+        'pef_id',
+        'pef_rut',
+        'pef_nombre',
+        'pef_foto',
+        'pef_correo',
+        'rol_id'
+    ];
 }

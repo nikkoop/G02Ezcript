@@ -5,8 +5,6 @@ insert into usuario (
 	pef_rut,
     rol_id,
     pef_nombre,
-    pef_apellido_paterno,
-    pef_apellido_materno,
     pef_correo,
     pef_contrasena,
     pef_descripcion,

@@ -21,6 +21,23 @@ return new class extends Migration
 
             $table->timestamps();
         });
+
+        // Insertando filas por defecto
+        DB::table('rol')->insert(
+            array(
+                'rol_id' => 1,
+                'rol_nombre' => 'Alumno',
+                'rol_descripcion' => ''
+            )
+        );
+
+        DB::table('rol')->insert(
+            array(
+                'rol_id' => 2,
+                'rol_nombre' => 'Profesor',
+                'rol_descripcion' => ''
+            )
+        );
     }
 
     /**

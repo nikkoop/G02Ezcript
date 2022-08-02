@@ -50,7 +50,7 @@ class UsuarioController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -197,9 +197,11 @@ class UsuarioController extends Controller
         if(empty($datosUsuario['pef_telefono'])){
             $datosUsuario['pef_telefono'] = 'No tiene';
         }
+        if(empty($datosUsuario['pef_rut'])){
+            $datosUsuario['pef_rut'] = 'No tiene'; /* Este campo es obligatorio, pero por el momento no lo será*/
+        }
 
         // Actualizar el registro
-
         if(Usuario::where('pef_id', '=', $pef_id)->update($datosUsuario)){
             Alert::success("Datos Actualizados", "Los datos han sido actualizados exitosamente");
         }
